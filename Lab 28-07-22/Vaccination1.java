@@ -6,10 +6,6 @@ abstract class Vaccine1{
 	int age,amount,choice,ch2;
 	Date firstdate,seconddate;
 	
-	
-	/**
-	 * 
-	 */
 	public void firstDose() {
 	Scanner sc= new Scanner(System.in);
 	System.out.println("Enter your name: ");
@@ -53,11 +49,7 @@ abstract class Vaccine1{
 	
 	public void secondDose() {
 		Scanner sc= new Scanner(System.in);
-		System.out.println("Check eligibility for 2nd Dose.");
-		System.out.println("Have you received your 1st Dose? \n1)Yes 2)No" );
-		choice=sc.nextInt();
-		if(choice==1)
-		{
+		
 		System.out.println("Eligible for 2nd Dose.");
 		System.out.println("Would you like to receive 2nd dose? \n1)Yes  2)No");
 		ch2=sc.nextInt();
@@ -66,16 +58,10 @@ abstract class Vaccine1{
 			System.out.println("2nd Dose vaccinated.");
 			System.out.println();
 		}
-		else
+		else if(ch2==2)
 		{
 			System.out.println("Please come later for your 2nd dose.");
 			System.out.println();
-		}
-		}
-		else if(choice==2)
-		{
-			System.out.println("Not eligible for 2nd dose.");
-			System.exit(0);
 		}
 		else
 			System.exit(0);
@@ -84,6 +70,8 @@ abstract class Vaccine1{
 	
 	abstract public void boosterDose();
 }
+
+
 class vaccinationSuccessful1 extends Vaccine1{
 	@Override
 	public void boosterDose() {
@@ -107,17 +95,42 @@ public class Vaccination1 {
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
 		vaccinationSuccessful1 vc = new vaccinationSuccessful1();
-		int c;
+		int c,m;
 		do{
 			System.out.println("Check for eligibility: \n1)1st Dose  2)2nd Dose  3)Booster  4)Quit");
 			c= sc.nextInt();
 			switch(c)
-			{
+			{	
 			case 1:
 				vc.firstDose();
 				break;
 			case 2:
-				vc.secondDose();
+				Date fdate= vc.firstdate;
+				int currdate,choice1;
+				System.out.println("Have you received your 1st Dose? \n1)Yes 2)No" );
+				choice1=sc.nextInt();
+				if(choice1==1)
+				{
+				System.out.println("Check eligibility for 2nd Dose.");
+				System.out.println("Enter current month: *in number \ne.g. 1-->Jan  2-->Feb");
+				currdate = sc.nextInt();
+				m = currdate - fdate.getMonth();
+				System.out.println("Difference of months from 1st dose: "+m+" months");
+				System.out.println();
+					if(m>=2)
+					{
+					vc.secondDose();
+					}
+					else {
+						System.out.println("Please come after 2 months gets completed.");
+						System.exit(0);
+					}
+				}
+				else if(choice1==2)
+				{
+					System.out.println("Not eligible for 2nd dose.");
+					System.exit(0);
+				}
 				break;
 			case 3:
 				vc.boosterDose();
