@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MaxMinNumber {
 
 	public static void main(String[] args) {
-		int max=0, min=0, s,i,j;
+		int s,i,j;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the size of an array: ");
 		s = sc.nextInt();
@@ -16,18 +16,15 @@ public class MaxMinNumber {
 			ar[i]= sc.nextInt();
 		}
 		
+		int max=ar[0];
+		int min=ar[0];
 		//to find the maximum and minimum number
 		for(i=0;i<s;i++)
 		{
-			for(j=0;j<s;j++)
-			{
-				if(ar[j]>ar[i])
-				{
-					max = ar[j];
-				}
-				else
-					min = ar[i];
-			}
+			if(ar[i]>max)
+				max=ar[i];
+			else if(ar[i]<min)
+				min=ar[i];
 		}
 		
 		System.out.println("Maximum number: "+max);
