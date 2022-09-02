@@ -8,22 +8,24 @@ public class Billing {
 	static Scanner sc = new Scanner(System.in);
 	
 	
-	static void order(String fname, int Amt)
+	static void order(String fname, int amt)
 	{
 		System.out.println("Enter quantity for "+fname+":");
 		int qty = sc.nextInt();
-		list.add(new Bill(fname,qty,qty*Amt));
+		list.add(new Bill(fname,qty,qty*amt));
 	}
 	
 	static void totalBill()
 	{
 		System.out.println("BILL");
 		System.out.println("=====");
+		System.out.println("ITEMS\t    QUANTITY\tAMOUNT");
+		System.out.println("===============================");
 		double total = 0.0;
 		for(Bill i: list)
 		{
 			System.out.println(i.fname+"\t"+i.qty+"\t"+i.amt);
-			total += i.amt;
+			total = total + i.amt;
 		}
 		
 		System.out.println();
