@@ -45,9 +45,47 @@ public class Billing {
 		{
 			System.out.println();
 			totalBill(); //we get the bill
-			System.exit(0); //exit
+			System.out.println();
+			coupon();
+			System.exit(0);
 		}
 		System.out.println();
+	}
+	
+	static void coupon()
+	{
+		System.out.println("Do you have a coupon?  y/n");
+		char ch = sc.next().charAt(0);
+		if(ch=='y')
+		{
+			int coupon = 123456;
+			System.out.println("Enter the coupon code:");
+			int code = sc.nextInt();
+			if(code==coupon)
+			{
+				double total = 0.0;
+				for(Bill i: list)
+				{
+					total = total + i.amt;
+				}
+				System.out.println();
+				System.out.println("Amount:\tRs. "+total);
+				double gst = total*0.05;
+				System.out.println("GST:\tRs. "+gst);
+				System.out.println("--------------------");
+				double ftotal= total+gst;
+				System.out.println("Total:\tRs. "+ftotal);
+				double temp = ftotal * 0.1;
+				double disc = ftotal - temp;
+				System.out.println("Total After Discount:\tRs. "+disc);
+				System.exit(0);
+			}
+			else
+			{
+				System.exit(0);
+			}
+				
+		}
 	}
 	
 	}
